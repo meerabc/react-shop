@@ -37,27 +37,33 @@ const ProductsPage = () => {
 
     //set search query value each time the search/query parameters change in url,so we can filter results
     //accordingly
-    useEffect(() => {
-        const searchQueryParam = searchParams.get('search');
-        setSearchQuery(searchQueryParam || '');
-        const categoryParam = searchParams.get('category')
-        setCategory(categoryParam || 'all')
-    }, [searchParams]); 
+    // useEffect(() => {
+    //     const searchQueryParam = searchParams.get('search');
+    //     setSearchQuery(searchQueryParam || '');
+    //     const categoryParam = searchParams.get('category')
+    //     setCategory(categoryParam || 'all')
+    // }, [searchParams]); 
 
     //gets filtered products based on applied filters
     useEffect(()=>{
       const fetchData = async () =>{
         try{
           setLoading(true)
+
+          const searchQueryParam = searchParams.get('search') || ''
+          const categoryParam = searchParams.get('category') || 'all'
+          setSearchQuery(searchQueryParam)
+          setCategory(categoryParam)
+
           let apiURL
-          if (searchQuery && category!=='all') {
-            apiURL = `https://api.escuelajs.co/api/v1/products/?title=${searchQuery}&categorySlug=${category}` 
+          if (searchQueryParam && categoryParam!=='all') {
+            apiURL = `https://api.escuelajs.co/api/v1/products/?title=${searchQueryParam}&categorySlug=${categoryParam}` 
           }
-          else if(searchQuery){
-            apiURL = `https://api.escuelajs.co/api/v1/products/?title=${searchQuery}` 
+          else if(searchQueryParam){
+            apiURL = `https://api.escuelajs.co/api/v1/products/?title=${searchQueryParam}` 
           }
-          else if(category!=='all'){
-             apiURL = `https://api.escuelajs.co/api/v1/products/?categorySlug=${category}` 
+          else if(categoryParam!=='all'){
+             apiURL = `https://api.escuelajs.co/api/v1/products/?categorySlug=${categoryParam}` 
           }
           else {
             apiURL = 'https://api.escuelajs.co/api/v1/products'   
@@ -76,7 +82,7 @@ const ProductsPage = () => {
         }
       }
       fetchData()
-    },[searchQuery,category])
+    },[searchParams])
 
     //only to print the products we are getting from api
     useEffect(()=>{
@@ -98,7 +104,9 @@ const ProductsPage = () => {
     return (
     <div className='products-page container'>
       <div className='search-container'>
-           <SearchField onSearch={handleSearchChange} />
+           <SearchField 
+             onSearch={handleSearchChange} 
+             currentValue={searchQuery}/>
       </div>
       <div className='main-container'>
         <div className='products-container'>

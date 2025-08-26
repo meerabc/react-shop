@@ -14,12 +14,6 @@ const App = () => {
   }
 
   const [theme,setTheme] = useState(getDefaultTheme)
-  
-  const toggleTheme = () => {
-    setTheme(prevTheme=>
-      prevTheme === 'light' ? 'dark' : 'light'
-    )
-  }
 
   useEffect(()=>{
       localStorage.setItem('theme', theme)
@@ -28,7 +22,7 @@ const App = () => {
 
   
   return (
-    <ThemeContext.Provider value={{theme,toggleTheme}} >
+    <ThemeContext.Provider value={{theme,setTheme}} >
     <Router>
       <NavBar />
       <Routes>

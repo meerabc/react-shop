@@ -1,10 +1,14 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { CiSearch } from "react-icons/ci";
 
-const SearchField = ({onSearch}) => {
+const SearchField = ({onSearch, currentValue}) => {
 
   const [input,setInput] = useState('')
+
+  useEffect(()=>{
+      setInput(currentValue || '')
+  },[currentValue])
 
   return (
     <div className='search-field'>

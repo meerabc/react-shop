@@ -89,13 +89,13 @@ p{
 
 .nav-buttons > button{
     font-size:20px;
-    font-weight:500;
+    font-weight:600;
     border:1px solid #333333;
     display:flex;
     align-items:center;
     background-color:var(--bg-color);
     color:var(--heading-color);
-    padding:5px 5px;
+    padding:7px 5px;
     gap:10px;
     border-radius:7px;
     cursor:pointer;
@@ -106,28 +106,64 @@ p{
     width:20px;
 }
 
+.nav-icons{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.theme-selection-container{
+    position:relative;
+}
+
 .icon-container{
    border:1px solid #333333;
    display:flex;
    align-items:center;
    justify-content:center;
    background-color:var(--bg-color);
-}
-
-.nav-icons{
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
-.icon-container{
-    padding:3px;
-    border-radius:5px;
-    cursor:pointer;
+   padding:4px;
+   border-radius:5px;
+   cursor:pointer;
 }
 
 .icon-container > svg{
     height:24px;
     width:24px;
+    color:var(--heading-color);
+}
+
+#theme-icon-container > svg {
+    color:var(--purple-color);
+}
+
+.drop-down{
+    position: absolute;
+    top: 100%;
+    left: 50%;              /* Position at center of parent */
+    transform: translateX(-50%);  /* Shift back by 50% of dropdown's width */
+    margin-top: 15px;
+    border: 0.5px solid var(--outline-color);
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    padding:25px 20px;
+    list-style:none;
+    background-color:var(--bg-color);
+    color:var(--heading-color);
+    border-radius:12px;
+}
+
+.drop-down > li{
+    font-size:24px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    cursor:pointer
+}
+
+.drop-down > li.selected{
+    color:var(--purple-color);
 }
 
 /* for SearchField.jsx */

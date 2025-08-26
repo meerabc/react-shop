@@ -2,12 +2,38 @@ import React from 'react'
 import { FaSignInAlt } from "react-icons/fa";
 import { MdPersonAdd } from "react-icons/md";
 import { FaGithub } from 'react-icons/fa';
+import { RiMoonClearLine } from "react-icons/ri";
+import { TbBrightnessUp } from "react-icons/tb";
 import ThemeContext from '../contexts/ThemeContext'
-import{ useContext } from 'react'
+import{ useContext,useState,useRef,useEffect } from 'react'
 
 const NavBar = () => {
 
-  const {toggleTheme} = useContext(ThemeContext)
+  const {theme,setTheme} = useContext(ThemeContext)
+
+  //for theme selection drop-down
+  const [isOpen,setIsOpen] = useState(false)
+
+  //when user clicks outside the dropdown,isOpen is set to false using this reference
+  const dropDownRef = useRef()
+
+  //the theme-button icon state management
+  const [icon,setIcon] = useState(theme==='light' ? <TbBrightnessUp /> : <RiMoonClearLine />)
+
+  useEffect(()=>{
+    const handleClickOutside = () => {
+      if(dropDownRef.current && !dropDownRef.current.contains(event.target))
+        setIsOpen(false)
+    }
+
+    if(isOpen)
+      document.addEventListener('mousedown',handleClickOutside)
+
+    return () => {
+      document.removeEventListener('mousedown',handleClickOutside)
+    }
+  },[isOpen])
+
 
   return (
     <div className='navbar'>
@@ -27,13 +53,36 @@ const NavBar = () => {
             </button>
             </div>
             <div className='nav-icons'>
-                <div className='icon-container'>
-                   <FaGithub />
+                <div className='theme-selection-container'
+                     ref={dropDownRef}>
+                  <button 
+                     className='icon-container' 
+                     id = 'theme-icon-container'
+                     onClick={()=>setIsOpen(prev=>!prev)}>
+                    {icon}
+                  </button>
+                  {isOpen && 
+                     <ul className='drop-down'>
+                        <li
+                          onClick={()=>{setTheme('dark')
+                                        setIsOpen(false)
+                                        setIcon(<RiMoonClearLine />)}}
+                          className={theme==='dark' ? 'selected' : ''}>
+                          <RiMoonClearLine />dark
+                        </li>
+                        <li
+                          onClick={()=>{setTheme('light')
+                                       setIsOpen(false)
+                                       setIcon(<TbBrightnessUp />)}}
+                          className={theme==='light' ? 'selected' : ''}>
+                          <TbBrightnessUp />light
+                        </li>
+                     </ul>
+                  }
                 </div>
-                <div className='icon-container'
-                     onClick={toggleTheme}>
+                <button className='icon-container'>
                    <FaGithub />
-                </div>
+                </button>
             </div>
         </div>
     </div>
