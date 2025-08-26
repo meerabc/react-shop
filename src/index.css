@@ -166,6 +166,22 @@ p{
     color:var(--purple-color);
 }
 
+.hamburger-menu{
+    border:1px solid var(--outline-color);
+    display:flex;
+    align-items:center;
+    padding:7px;
+    border-radius:7px;
+    color:var(--heading-color);
+    background-color:var(--bg-color);
+    display:none;
+}
+
+.hamburger-menu > svg{
+    height:20px;
+    width:20px;
+}
+
 /* for SearchField.jsx */
 
 .search-field{
@@ -208,9 +224,7 @@ p{
 /* for ProductCard.jsx */
 
 .product-card{
-    /* max-width:353.5px; */
-    /* width:33.3%; */
-    width:310px;
+    /* min-width:280px; */
     padding:28px;
     border:1px solid var(--outline-color);
     border-radius:12px;
@@ -339,3 +353,13 @@ p{
 .categories-list > li.selected{
     border-left:2px solid var(--purple-color);
 }
+
+@media (max-width:1280px){
+    .hamburger-menu{
+        display:inline;
+    }
+}
+
+
+
+

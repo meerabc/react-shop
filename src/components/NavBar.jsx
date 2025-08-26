@@ -4,6 +4,7 @@ import { MdPersonAdd } from "react-icons/md";
 import { FaGithub } from 'react-icons/fa';
 import { RiMoonClearLine } from "react-icons/ri";
 import { TbBrightnessUp } from "react-icons/tb";
+import { RxHamburgerMenu } from "react-icons/rx";
 import ThemeContext from '../contexts/ThemeContext'
 import{ useContext,useState,useRef,useEffect } from 'react'
 
@@ -37,6 +38,9 @@ const NavBar = () => {
 
   return (
     <div className='navbar'>
+        <button className = 'hamburger-menu'>
+          <RxHamburgerMenu />
+        </button>
         <h1>React Shop</h1>
         <ul className='nav-items-container'>
            <li>Home</li>

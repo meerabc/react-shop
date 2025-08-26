@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom'
 import SearchField from '../../components/SearchField'
 import ProductCard from '../../components/ProductCard'
 import CategorySelector from '../../components/CategorySelector'
+import {ScaleLoader} from 'react-spinners'
 import './ProductsPage.css'
 
 const ProductsPage = () => {
@@ -37,14 +38,6 @@ const ProductsPage = () => {
 
     //set search query value each time the search/query parameters change in url,so we can filter results
     //accordingly
-    // useEffect(() => {
-    //     const searchQueryParam = searchParams.get('search');
-    //     setSearchQuery(searchQueryParam || '');
-    //     const categoryParam = searchParams.get('category')
-    //     setCategory(categoryParam || 'all')
-    // }, [searchParams]); 
-
-    //gets filtered products based on applied filters
     useEffect(()=>{
       const fetchData = async () =>{
         try{
@@ -110,7 +103,11 @@ const ProductsPage = () => {
       </div>
       <div className='main-container'>
         <div className='products-container'>
-            {productCardElements}
+            <ScaleLoader 
+               loading={loading}
+               color='#703BF7'
+               cssOverride={{ margin: "40px auto", display: "block" }}/>
+            {!loading && productCardElements}
         </div>
         <div className='categories-container'>
             <CategorySelector 

@@ -13,17 +13,54 @@
 .products-page .main-container{
     width:100%;
     display:flex;
+    gap:15px;
 }
 
 .products-page .products-container{
     height:100%;
-    /* border:1px solid blue; */
     width:82%;
-    display:flex;
-    flex-wrap:wrap;
-    gap:25px;
+    display: grid;
+    gap: 20px; 
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
 }
 
 .categories-container{
     flex-grow:1;
+}
+
+@media(max-width:1030px){
+    .products-page .search-container{
+        width:45%;
+    }
+    .products-page .main-container{
+        flex-direction:column-reverse;
+        gap:15px;
+    }
+    .products-page .products-container{
+        width:100%;
+        padding:70px;
+        display: grid;
+        gap: 20px; 
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+@media(max-width:840px){
+    .products-page.container{
+        padding:40px 15px;
+    }
+    .products-page .search-container{
+        width:100%;
+    }
+    .products-page .products-container {
+        display: grid;
+        grid-template-columns: 1fr;   /* only 1 column */
+        justify-items: center;        /* center the card horizontally */
+        padding: 5px;
+        grid-template-columns: 1fr !important;
+    }
+    .product-card {
+    width: 100%;         /* let it shrink with container */
+    max-width: 310px;    /* but don’t exceed this */
+    }
 }

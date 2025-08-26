@@ -56,32 +56,34 @@ const ProductDetailPage = () => {
         </div>
         {productData && 
         <div className='product-details-container'>
-          <div className='side-img-container'> 
-              {
-                productData.images.map((image)=>
-                  <div className='side-img'>
-                      <img src={image}
-                      alt='product-image'
-                      className={image===mainImage ? 'selected' : ''}
-                      onClick={()=>handleChange(image)} />
-                  </div>
-                )
-              }  
-          </div>
-          <div className='main-img-container'>
-            {mainImage && <img src={mainImage} alt='product-image' />}
-          </div>
-          <div className='info-container'>
-            <h1>{productData.title}</h1>
-            <div className='product-category'>{productData.category.name}</div>
-            <p className='description'>{productData.description}</p>
-            <div className='price-container'>
-              <div className='price'>
-                <p className='price-header'>price</p>
-                <p className='price-value'>{`$ ${productData.price}`}</p>
-              </div>
-              <button>Add To Cart</button>
+          <div className='image-container'>
+            <div className='side-img-container'> 
+                {
+                  productData.images.map((image)=>
+                    <div className='side-img'>
+                        <img src={image}
+                        alt='product-image'
+                        className={image===mainImage ? 'selected' : ''}
+                        onClick={()=>handleChange(image)} />
+                    </div>
+                  )
+                }  
             </div>
+            <div className='main-img-container'>
+              {mainImage && <img src={mainImage} alt='product-image' />}
+            </div>
+          </div>
+            <div className='info-container'>
+              <h1>{productData.title}</h1>
+              <div className='product-category'>{productData.category.name}</div>
+              <p className='description'>{productData.description}</p>
+              <div className='price-container'>
+                <div className='price'>
+                  <p className='price-header'>price</p>
+                  <p className='price-value'>{`$ ${productData.price}`}</p>
+                </div>
+                <button>Add To Cart</button>
+              </div>
           </div>
         </div>
         }
@@ -93,16 +95,4 @@ const ProductDetailPage = () => {
 export default ProductDetailPage
 
 
-            {/* <img src={productData.images[0]} 
-                  alt='product-image' 
-                  onClick={(e)=>handleChange(e.target.src)}/>
-            </div>
-            <div className='side-img'>
-              <img src={productData.images[1]} 
-                  alt='product-image' 
-                  onClick={(e)=>handleChange(e.target.src)}/>
-            </div>
-            <div className='side-img'>
-              <img src={productData.images[2]} 
-                  alt='product-image' 
-                  onClick={(e)=>handleChange(e.target.src)}/> */}
+          
