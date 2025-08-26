@@ -1,0 +1,108 @@
+import React from 'react'
+import { useState, useEffect } from 'react'
+import { useParams,useNavigate } from 'react-router-dom'
+import { IoIosArrowBack } from "react-icons/io";
+import './ProductDetailPage.css'
+
+const ProductDetailPage = () => {
+
+  const navigate = useNavigate()
+  const {productId} = useParams()
+  const [productData,setProductData] = useState(null)
+  const [loading,setLoading] = useState(false)
+  const [mainImage,setMainImage] = useState(null)
+
+  useEffect(()=>{
+    const fetchData = async () =>{
+      try{
+        setLoading(true)
+        const response = await fetch(`https://api.escuelajs.co/api/v1/products/${productId}`)
+        const result = await response.json()
+        setProductData(result)
+        setMainImage(result.images[0])
+        if(!response.ok)
+          console.log('response not OK')
+      }
+      catch(err){
+          console.log(err)
+      }
+      finally{
+        setLoading(false)
+      }
+    }
+    fetchData()
+  },[productId])
+
+  //only to print the product data
+  useEffect(()=>{
+    console.log(productData)
+  },[productData])
+ 
+  //function to change main image
+  const handleChange = (image) => {
+    setMainImage(image)
+  }
+
+ 
+  return (
+    <div className='product-detail-page container'>
+      <div className='product-container'>
+        <div className='button-container'>
+          <button className='back-button'
+                  onClick={()=>navigate('/')}>
+                  <span><IoIosArrowBack /></span>
+                  Back
+          </button>
+        </div>
+        {productData && 
+        <div className='product-details-container'>
+          <div className='side-img-container'> 
+              {
+                productData.images.map((image)=>
+                  <div className='side-img'>
+                      <img src={image}
+                      alt='product-image'
+                      className={image===mainImage ? 'selected' : ''}
+                      onClick={()=>handleChange(image)} />
+                  </div>
+                )
+              }  
+          </div>
+          <div className='main-img-container'>
+            {mainImage && <img src={mainImage} alt='product-image' />}
+          </div>
+          <div className='info-container'>
+            <h1>{productData.title}</h1>
+            <div className='product-category'>{productData.category.name}</div>
+            <p className='description'>{productData.description}</p>
+            <div className='price-container'>
+              <div className='price'>
+                <p className='price-header'>price</p>
+                <p className='price-value'>{`$ ${productData.price}`}</p>
+              </div>
+              <button>Add To Cart</button>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  )
+}
+
+export default ProductDetailPage
+
+
+            {/* <img src={productData.images[0]} 
+                  alt='product-image' 
+                  onClick={(e)=>handleChange(e.target.src)}/>
+            </div>
+            <div className='side-img'>
+              <img src={productData.images[1]} 
+                  alt='product-image' 
+                  onClick={(e)=>handleChange(e.target.src)}/>
+            </div>
+            <div className='side-img'>
+              <img src={productData.images[2]} 
+                  alt='product-image' 
+                  onClick={(e)=>handleChange(e.target.src)}/> */}

@@ -1,0 +1,29 @@
+.products-page.container{
+    width:100%;
+    min-height:100vh;
+    background-color:var(--bg-color);
+    padding:40px 60px;
+}
+
+.products-page .search-container{
+    width:33%;
+    margin-bottom:25px;
+}
+
+.products-page .main-container{
+    width:100%;
+    display:flex;
+}
+
+.products-page .products-container{
+    height:100%;
+    /* border:1px solid blue; */
+    width:82%;
+    display:flex;
+    flex-wrap:wrap;
+    gap:25px;
+}
+
+.categories-container{
+    flex-grow:1;
+}

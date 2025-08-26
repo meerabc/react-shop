@@ -1,0 +1,132 @@
+.product-detail-page.container{
+    width:100%;
+    min-height:100vh;
+    background-color:var(--bg-color);
+    padding:10px 90px;
+}
+
+.product-container{
+     border:1px solid var(--outline-color);
+     background-color:var(--button-color);
+     border-radius:12px;
+     padding:7px 0 41px 0;
+}
+
+.button-container{
+    display:flex;
+    justify-content:flex-end;
+    padding:0 25px;
+}
+
+.button-container > button{
+    font-size:16px;
+    display:flex;
+    align-items:center;
+    background-color:var(--bg-color);
+    color:var(--para-color);
+    border:1px solid var(--outline-color);
+    padding:10px 15px;
+    gap:7px;
+    border-radius:25px;
+    cursor:pointer;
+}
+
+.button-container > button > span{
+    display:flex;
+    align-items:center;
+    color:var(--heading-color);
+}
+
+.product-details-container{
+    display:flex;
+    align-items:center;
+    padding:0 70px;
+    gap:50px;
+}
+
+.side-img-container{
+   display:flex;
+   flex-direction:column;
+   gap:35px;
+}
+
+.side-img{
+    width:80px;
+    height:80px;
+    cursor:pointer;
+}
+
+.side-img > img{
+    width:100%;
+    height:100%;
+    border-radius:12px;
+}
+
+.side-img > img.selected{
+    opacity:30%;
+}
+
+.main-img-container{
+    width:1500px;
+}
+
+.main-img-container >img{
+    width:100%;
+    border-radius:12px;
+}
+
+.info-container{
+    
+}
+
+.info-container > h1{
+    font-size:36px;
+    font-weight:500;
+}
+
+.product-category{
+    font-size:12px;
+    font-weight:500;
+    color:var(--heading-color);
+    border:1px solid var(--outline-color);
+    background-color:var(--button-color);
+    display:inline-block;
+    padding:9px;
+    border-radius:17px;
+}
+
+.description{
+   text-wrap:wrap;
+   font-size:20px;
+   color:var(--para-color);
+   margin:25px 0;
+}
+
+.price-container{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+}
+
+.price-header{
+    font-size:18px;
+    color:var(--para-color);
+    margin-bottom:5px;
+}
+
+.price-value{
+    color:var(--heading-color);
+    font-size:24px;
+    font-weight:500;
+}
+
+.price-container > button{
+    background-color:var(--purple-color);
+    color:#ffffff;
+    padding:5px 15px;
+    font-size:18px;
+    border-radius:8px;
+    border:none;
+    cursor:pointer;
+}
+
