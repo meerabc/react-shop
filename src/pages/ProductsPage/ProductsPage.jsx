@@ -79,7 +79,7 @@ const ProductsPage = () => {
 
     //only to print the products we are getting from api
     useEffect(()=>{
-      console.log(filteredProducts)
+      console.log('Filtered Products : ',filteredProducts)
     },[filteredProducts])
 
     const productCardElements = filteredProducts.map((product)=>
@@ -106,7 +106,8 @@ const ProductsPage = () => {
             <ScaleLoader 
                loading={loading}
                color='#703BF7'
-               cssOverride={{ margin: "40px auto", display: "block" }}/>
+               cssOverride={{ margin: "40px auto", display: "block" }}
+            />
             {!loading && productCardElements}
         </div>
         <div className='categories-container'>

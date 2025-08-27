@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams,useNavigate } from 'react-router-dom'
 import { IoIosArrowBack } from "react-icons/io";
+import {ScaleLoader} from 'react-spinners'
 import './ProductDetailPage.css'
 
 const ProductDetailPage = () => {
@@ -35,7 +36,7 @@ const ProductDetailPage = () => {
 
   //only to print the product data
   useEffect(()=>{
-    console.log(productData)
+    console.log('Product Data : ',productData)
   },[productData])
  
   //function to change main image
@@ -54,7 +55,13 @@ const ProductDetailPage = () => {
                   Back
           </button>
         </div>
-        {productData && 
+        {loading && <div className='loader-div'>
+        <ScaleLoader 
+            loading={loading}
+            color='#703BF7'
+            cssOverride={{ margin: "80px auto", display: "block" }}/>
+        </div>}
+        {!loading && productData && 
         <div className='product-details-container'>
           <div className='image-container'>
             <div className='side-img-container'> 

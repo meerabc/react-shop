@@ -358,6 +358,12 @@ p{
     .hamburger-menu{
         display:inline;
     }
+    .nav-icons{
+        display:none;
+    }
+    .nav-items-container{
+    display:none;
+    }
 }
 
 
