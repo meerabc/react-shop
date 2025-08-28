@@ -7,8 +7,11 @@ import { TbBrightnessUp } from "react-icons/tb";
 import { RxHamburgerMenu } from "react-icons/rx";
 import ThemeContext from '../contexts/ThemeContext'
 import{ useContext,useState,useRef,useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const NavBar = () => {
+
+  const navigate = useNavigate()
 
   const {theme,setTheme} = useContext(ThemeContext)
 
@@ -49,10 +52,12 @@ const NavBar = () => {
         </ul>
         <div className='buttons-container'>
             <div className='nav-buttons'>
-            <button className='login-button'>
+            <button className='login-button'
+                onClick = {()=>navigate('/signin')}>
                 <FaSignInAlt /> Login
             </button>
-                <button className='signup-button'>
+                <button className='signup-button'
+                 onClick = {()=>navigate('/signup')}>
                 <MdPersonAdd /> Sign Up
             </button>
             </div>

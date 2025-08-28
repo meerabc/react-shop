@@ -3,8 +3,13 @@ import ThemeContext from './contexts/ThemeContext'
 import {useState,useEffect} from 'react'
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom' 
 import ProductsPage from './pages/ProductsPage/index'
+import SignUpPage from './pages/SignUpPage/index'
+import SignInPage from './pages/SignInPage/index'
+import CartPage from './pages/CartPage/index'
 import ProductDetailPage from './pages/ProductDetailPage/index'
 import NavBar from './components/NavBar'
+import PublicRoute from './routes/PublicRoute'
+import ProtectedRoute from './routes/ProtectedRoute'
 
 const App = () => {
 
@@ -26,8 +31,19 @@ const App = () => {
     <Router>
       <NavBar />
       <Routes>
-          <Route path='/' element={<ProductsPage />} />
-          <Route path='/:productId' element={<ProductDetailPage />} />
+
+        <Route path='/' element={<ProductsPage />} />
+        <Route path='/:productId' element={<ProductDetailPage />} />
+
+        <Route element={<PublicRoute />} >
+           <Route path='/signin' element={<SignInPage />} />
+           <Route path='/signup' element={<SignUpPage />} />
+        </Route>
+
+        <Route element={<ProtectedRoute />} >
+          <Route path='/cart' element={<CartPage />} />
+        </Route>
+
       </Routes>
     </Router>
     </ThemeContext.Provider>
