@@ -1,12 +1,14 @@
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react'
-import { setAccessToken } from '../../utils/localStorage'
+import { useAuth } from '../../hooks/useAuth'
 import './SignInPage.css'
 
 const SignInPage = () => {
 
   const navigate = useNavigate()
+
+  const {login} = useAuth()
 
   const [formData,setFormData] = useState({
     email : '',
@@ -32,7 +34,7 @@ const SignInPage = () => {
         })
         const data = await response.json()
         console.log('sign in response ' , data)
-        setAccessToken(data.access_token)
+        login(data.access_token)
         navigate('/')
     }
     catch(err){

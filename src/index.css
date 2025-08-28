@@ -87,7 +87,7 @@ p{
    gap:15px;
 }
 
-.nav-buttons > button{
+.nav-buttons  button{
     font-size:20px;
     font-weight:600;
     border:1px solid #333333;
@@ -101,7 +101,7 @@ p{
     cursor:pointer;
 }
 
-.nav-buttons > button > svg{
+.nav-buttons  button > svg{
     height:20px;
     width:20px;
 }

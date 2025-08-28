@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaSignInAlt } from "react-icons/fa";
 import { MdPersonAdd } from "react-icons/md";
+import { BiLogOut } from "react-icons/bi";
 import { FaGithub } from 'react-icons/fa';
 import { RiMoonClearLine } from "react-icons/ri";
 import { TbBrightnessUp } from "react-icons/tb";
@@ -8,10 +9,13 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import ThemeContext from '../contexts/ThemeContext'
 import{ useContext,useState,useRef,useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../hooks/useAuth'
 
 const NavBar = () => {
 
   const navigate = useNavigate()
+
+  const {isAuthenticated,logout} = useAuth()
 
   const {theme,setTheme} = useContext(ThemeContext)
 
@@ -51,16 +55,24 @@ const NavBar = () => {
            <li>About</li>
         </ul>
         <div className='buttons-container'>
-            <div className='nav-buttons'>
-            <button className='login-button'
-                onClick = {()=>navigate('/signin')}>
-                <FaSignInAlt /> Login
-            </button>
+            {!isAuthenticated ?
+              <div  className='nav-buttons'>
+                <button className='login-button'
+                  onClick = {()=>navigate('/signin')}>
+                  <FaSignInAlt /> Login
+                </button>
                 <button className='signup-button'
-                 onClick = {()=>navigate('/signup')}>
-                <MdPersonAdd /> Sign Up
-            </button>
-            </div>
+                  onClick = {()=>navigate('/signup')}>
+                  <MdPersonAdd /> Sign Up
+                </button> 
+              </div>  :
+              <div  className='nav-buttons'>
+                <button className='logout-button'
+                  onClick = {logout}>
+                  <BiLogOut /> Logout
+                </button>
+              </div>
+            }
             <div className='nav-icons'>
                 <div className='theme-selection-container'
                      ref={dropDownRef}>
