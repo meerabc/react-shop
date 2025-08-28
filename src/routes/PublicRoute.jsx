@@ -1,16 +1,21 @@
 import React from 'react'
 import { useAuth } from '../hooks/useAuth'
-import { Navigate } from 'react-router-dom'
+import { Navigate,Outlet } from 'react-router-dom'
  
-const PublicRoute = ({children}) => {
+const PublicRoute = () => {
 
-  const {isAuthenticated} = useAuth()
+  const {isAuthenticated,loading} = useAuth()
 
-  if(isAuthenticated){
-    return <Navigate to='/cart' replace/>
+  if(loading){
+    console.log('checking authentication...')
+    return null
   }
 
-  return children
+  if(isAuthenticated){
+    return <Navigate to='/' replace/>
+  }
+
+  return <Outlet />
 }
 
 export default PublicRoute

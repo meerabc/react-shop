@@ -66,8 +66,8 @@ const ProductDetailPage = () => {
           <div className='image-container'>
             <div className='side-img-container'> 
                 {
-                  productData.images.map((image)=>
-                    <div className='side-img'>
+                  productData.images.map((image,index)=>
+                    <div key={index} className='side-img'>
                         <img src={image}
                         alt='product-image'
                         className={image===mainImage ? 'selected' : ''}
