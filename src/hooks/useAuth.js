@@ -3,12 +3,12 @@ import { getAccessToken,setAccessToken, removeAccessToken } from '../utils/local
 
 export const useAuth = () => {
    const [isAuthenticated, setIsAuthenticated] = useState(false)
-   const [loading, setLoading] = useState(false)
+   const [loading, setLoading] = useState(true)
 
    const checkAuthentication = async () => {
      setLoading(true)
      try{
-        const token = getAccessToken()
+        const token = await getAccessToken()
         setIsAuthenticated( token ? true : false)
      }
      catch(err){
