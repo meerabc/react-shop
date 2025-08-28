@@ -18,11 +18,15 @@ const ProductDetailPage = () => {
       try{
         setLoading(true)
         const response = await fetch(`https://api.escuelajs.co/api/v1/products/${productId}`)
+
+        if(!response.ok){
+          console.log('response not OK')
+          return
+        }
+
         const result = await response.json()
         setProductData(result)
         setMainImage(result.images[0])
-        if(!response.ok)
-          console.log('response not OK')
       }
       catch(err){
           console.log(err)

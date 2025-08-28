@@ -10,6 +10,7 @@ export const useAuth = () => {
      try{
         const token = await getAccessToken()
         setIsAuthenticated( token ? true : false)
+        console.log(token ? 'authenticated user' : 'unauthenticated user')
      }
      catch(err){
         console.log('Error while checking authentication')
@@ -28,6 +29,7 @@ export const useAuth = () => {
      try{
       await removeAccessToken()
       setIsAuthenticated(false)
+      console.log('logout successful')
      }
      catch(err){
       console.log('Error while logging out')
@@ -38,6 +40,7 @@ export const useAuth = () => {
      try{
       setAccessToken(token)
       setIsAuthenticated(true)
+      console.log('login successful , authentucation token: ', token)
      }
      catch(err){
       console.log('Error while logging in')

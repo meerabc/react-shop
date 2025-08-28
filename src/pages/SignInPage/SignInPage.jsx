@@ -33,6 +33,12 @@ const SignInPage = () => {
             body : JSON.stringify(formData)
         })
         const data = await response.json()
+
+        if (!response.ok){
+          console.log('response not okay',data)
+          return
+        }
+       
         console.log('sign in response ' , data)
         login(data.access_token)
         navigate('/')

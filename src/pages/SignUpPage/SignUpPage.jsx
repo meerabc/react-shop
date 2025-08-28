@@ -32,6 +32,12 @@ const SignUpPage = () => {
             body : JSON.stringify(formData)
         })
         const data = await response.json()
+
+        if(!response.ok){
+          console.log('response not okay ',data)
+          return
+        }
+        
         console.log('user created ' , data)
     }
     catch(err){
