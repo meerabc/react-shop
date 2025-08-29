@@ -26,9 +26,12 @@ const ProductDetailPage = () => {
   const handleAddToCart = () => {
         dispatch(addToCart({
           productId: parseInt(productId),
-          quantity: quantity
+          quantity: quantity,
+          productName: productData.title,
+          productImage: productData.images[0],
+          productCategory: productData.category.name,
+          productPrice: productData.price
         }))
-        console.lo
   }
 
   const handleMinusQuantity = () => {

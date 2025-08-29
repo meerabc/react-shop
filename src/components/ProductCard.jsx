@@ -10,7 +10,7 @@ const ProductCard = ({id,image,title,description,category,price}) => {
   //just to view current cart
   const carts = useSelector(store=>store.cart.items)
   console.log('carts', carts)
-  
+
   const dispatch = useDispatch()
 
   const onClick = (productId) => {
@@ -19,8 +19,12 @@ const ProductCard = ({id,image,title,description,category,price}) => {
 
   const handleAddToCart = () => {
       dispatch(addToCart({
-        productId : id ,
-        quantity: 1
+        productId : id,
+        quantity: 1,
+        productName: title,
+        productImage: image,
+        productCategory: category,
+        productPrice: price
       }))
   }
 

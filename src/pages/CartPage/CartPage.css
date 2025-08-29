@@ -1,0 +1,14 @@
+.cart-page.container{
+    width:100%;
+    min-height:100vh;
+    background-color:var(--bg-color);
+    padding:120px 90px;
+    display:flex;
+    align-items:center;
+}
+
+.cart-items-container{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
