@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { validateEmail, validatePassword, validateFullName1To3Words } from '../../utils/validationHelper'
+import { validateEmail, validateFullName1To3Words } from '../../utils/validationHelper'
 import { FaUser } from "react-icons/fa"; 
 import { MdEmail } from "react-icons/md"; 
 import { RiLockPasswordFill } from "react-icons/ri"; 
@@ -62,8 +62,8 @@ const SignUpPage = () => {
       case 'password' :
         if(!value)
           error = 'this field is mandatory'
-        else if(!validatePassword(value))
-          error = 'password must be 8+ chars with letter, number & special character'
+        // else if(!validatePassword(value))
+        //   error = 'password must be 8+ chars with letter, number & special character'
         break
               
       case 'confirmPassword' :

@@ -1,20 +1,36 @@
 import React from 'react'
-import {useState} from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import {changeQuantity} from '../stores/cart'
+import { changeQuantity, removeFromCart } from '../stores/cart'
 
-const CartItem = ({quantity,name,image,category,price}) => {
+const CartItem = ({productId,quantity,name,image,category,price}) => {
 
   const dispatch = useDispatch()
 
   const [productQuantity,setProductQuantity] = useState(quantity)
 
   const handleMinusQuantity = () => {
-    setProductQuantity(quantity-1 < 1 ? 1 : quantity-1)
+    const newQuantity = quantity - 1 < 1 ? 1 : quantity - 1
+    setProductQuantity(newQuantity)
+    dispatch(changeQuantity({
+      productId: productId,
+      quantity: newQuantity
+    }))
   }
 
   const handlePlusQuantity = () => {
-    setProductQuantity(quantity + 1)
+    const newQuantity = quantity + 1
+    setProductQuantity(newQuantity)
+    dispatch(changeQuantity({
+      productId: productId,
+      quantity: newQuantity
+    }))
+  }
+
+  const handleRemoveFromCart = () => {
+    dispatch(removeFromCart({
+      productId: productId
+    }))
   }
 
   return (
@@ -27,7 +43,7 @@ const CartItem = ({quantity,name,image,category,price}) => {
           <div className='detail-sub-div'>
             <div className='info'>
               <p className='category'>{category}</p>
-              <p className='price'>price : <span>{`$ ${price}`}</span></p>
+              <p className='price'>price : <span>{`$ ${price * productQuantity}`}</span></p>
             </div>
             <div className='quantity-selection-div'>
               <button onClick={handleMinusQuantity}>-</button>
@@ -36,7 +52,10 @@ const CartItem = ({quantity,name,image,category,price}) => {
             </div>
           </div>
       </div>
-      <button className='delete-button'>delete</button>
+      <button className='delete-button'
+      onClick={handleRemoveFromCart}>
+        delete
+      </button>
     </div>
   )
 }

@@ -9,11 +9,21 @@ const CartPage = () => {
 
   const cartItemElements = carts.map(item=>
     <CartItem key={item.productId}
+              productId={item.productId}
               quantity={item.quantity}
               name={item.productName}
               image={item.productImage}
               category={item.productCategory}
               price={item.productPrice} />
+  )
+
+  if(carts.length === 0)
+    return (
+    <div className='cart-page container'>
+      <div className='cart-items-container'>
+        <p>No items yet</p>
+      </div>
+    </div>
   )
 
   return (
