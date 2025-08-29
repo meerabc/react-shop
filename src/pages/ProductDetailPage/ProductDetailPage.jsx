@@ -3,15 +3,41 @@ import { useState, useEffect } from 'react'
 import { useParams,useNavigate } from 'react-router-dom'
 import { IoIosArrowBack } from "react-icons/io";
 import {ScaleLoader} from 'react-spinners'
+import { useDispatch,useSelector } from 'react-redux' 
+import { addToCart } from '../../stores/cart'
 import './ProductDetailPage.css'
 
 const ProductDetailPage = () => {
 
   const navigate = useNavigate()
   const {productId} = useParams()
+  const dispatch = useDispatch()
+
   const [productData,setProductData] = useState(null)
   const [loading,setLoading] = useState(false)
   const [mainImage,setMainImage] = useState(null)
+  //for quantity of items to be added to cart
+  const [quantity,setQuantity] = useState(1)
+  
+  //just to view current cart
+  const carts = useSelector(store=>store.cart.items)
+  console.log('carts', carts)
+
+  const handleAddToCart = () => {
+        dispatch(addToCart({
+          productId: parseInt(productId),
+          quantity: quantity
+        }))
+        console.lo
+  }
+
+  const handleMinusQuantity = () => {
+    setQuantity(quantity-1 < 1 ? 1 : quantity-1)
+  }
+
+  const handlePlusQuantity = () => {
+    setQuantity(quantity + 1)
+  }
 
   useEffect(()=>{
     const fetchData = async () =>{
@@ -88,12 +114,19 @@ const ProductDetailPage = () => {
               <h1>{productData.title}</h1>
               <div className='product-category'>{productData.category.name}</div>
               <p className='description'>{productData.description}</p>
-              <div className='price-container'>
+              <div className='cart-container'>
                 <div className='price'>
                   <p className='price-header'>price</p>
                   <p className='price-value'>{`$ ${productData.price}`}</p>
                 </div>
-                <button onClick = {()=>navigate('/cart')}>Add To Cart</button>
+                <div className='buttons'>
+                  <div className = 'quantity-selection-div'>
+                    <button onClick={handleMinusQuantity}>-</button>
+                    <span>{quantity}</span>
+                    <button onClick={handlePlusQuantity}>+</button>
+                  </div>
+                  <button onClick = {handleAddToCart}>Add To Cart</button>
+                </div>
               </div>
           </div>
         </div>

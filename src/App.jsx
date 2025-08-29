@@ -11,6 +11,8 @@ import NavBar from './components/NavBar'
 import PublicRoute from './routes/PublicRoute'
 import ProtectedRoute from './routes/ProtectedRoute'
 import { AuthProvider } from './contexts/AuthContext' 
+import { Provider } from 'react-redux'
+import { store } from './stores'
 
 const App = () => {
 
@@ -29,6 +31,7 @@ const App = () => {
   
   return (
     <AuthProvider>
+    <Provider store={store}>
     <ThemeContext.Provider value={{theme,setTheme}} >
     <Router>
       <NavBar />
@@ -49,6 +52,7 @@ const App = () => {
       </Routes>
     </Router>
     </ThemeContext.Provider>
+    </Provider>
     </AuthProvider>
   )
 }

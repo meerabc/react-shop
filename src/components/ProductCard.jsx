@@ -1,12 +1,27 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux' 
+import { addToCart } from '../stores/cart'
 
 const ProductCard = ({id,image,title,description,category,price}) => {
 
   const navigate = useNavigate()
 
+  //just to view current cart
+  const carts = useSelector(store=>store.cart.items)
+  console.log('carts', carts)
+  
+  const dispatch = useDispatch()
+
   const onClick = (productId) => {
     navigate(`/${productId}`)
+  }
+
+  const handleAddToCart = () => {
+      dispatch(addToCart({
+        productId : id ,
+        quantity: 1
+      }))
   }
 
   return (
@@ -28,7 +43,7 @@ const ProductCard = ({id,image,title,description,category,price}) => {
           <p className='price-header'>price</p>
           <p className='price-value'>{`$ ${price}`}</p>
         </div>
-        <button onClick = {()=>navigate('/cart')}>Add To Cart</button>
+        <button onClick = {handleAddToCart}>Add To Cart</button>
       </div>
     </div>
   )

@@ -166,6 +166,22 @@ p{
     cursor:pointer
 }
 
+#cart-icon-container{
+    position:relative;
+}
+
+.counter{
+    position:absolute;
+    background-color:#EF4444;
+    color:#ffffff;
+    border-radius:50%;
+    padding:2px 5px;
+    font-size:10px;
+    top:-4px;
+    right:-6px;
+
+}
+
 .drop-down > li.selected{
     color:var(--purple-color);
 }

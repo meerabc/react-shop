@@ -10,23 +10,31 @@ import ThemeContext from '../contexts/ThemeContext'
 import{ useContext,useState,useRef,useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
+import { IoCart } from "react-icons/io5";
+import { useSelector } from 'react-redux'
 
 const NavBar = () => {
 
   const navigate = useNavigate()
 
   const {isAuthenticated,logout} = useAuth()
-
   const {theme,setTheme} = useContext(ThemeContext)
-
   //for theme selection drop-down
   const [isOpen,setIsOpen] = useState(false)
-
   //when user clicks outside the dropdown,isOpen is set to false using this reference
   const dropDownRef = useRef()
-
   //the theme-button icon state management
   const [icon,setIcon] = useState(theme==='light' ? <TbBrightnessUp /> : <RiMoonClearLine />)
+  //for cart quantity red circle
+  const [totalQuantity,setTotalQuantity] = useState(0)
+
+  const carts = useSelector(store=>store.cart.items)
+
+  useEffect(()=>{
+    let total = 0
+    carts.forEach(item => total += item.quantity )
+    setTotalQuantity(total)
+  },[carts])
 
   useEffect(()=>{
     const handleClickOutside = () => {
@@ -103,8 +111,14 @@ const NavBar = () => {
                      </ul>
                   }
                 </div>
-                <button className='icon-container'>
+                {/* <button className='icon-container'>
                    <FaGithub />
+                </button> */}
+                <button className='icon-container' 
+                id='cart-icon-container'
+                onClick={()=>navigate('/cart')}>
+                   <IoCart />
+                   {totalQuantity !== 0 && <span className='counter'>{totalQuantity}</span>}
                 </button>
             </div>
         </div>
