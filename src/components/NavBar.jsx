@@ -9,7 +9,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import ThemeContext from '../contexts/ThemeContext'
 import{ useContext,useState,useRef,useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuth'
+import { useAuth } from '../contexts/AuthContext'
 
 const NavBar = () => {
 
@@ -41,7 +41,9 @@ const NavBar = () => {
       document.removeEventListener('mousedown',handleClickOutside)
     }
   },[isOpen])
-
+ 
+  //just to check logical flow
+  console.log('NavBar render - isAuthenticated:', isAuthenticated)
 
   return (
     <div className='navbar'>
@@ -51,7 +53,7 @@ const NavBar = () => {
         <h1>React Shop</h1>
         <ul className='nav-items-container'>
            <li>Home</li>
-           <li>Products</li>
+           <li onClick = {()=>navigate('/')}>Products</li>
            <li>About</li>
         </ul>
         <div className='buttons-container'>

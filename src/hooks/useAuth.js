@@ -1,54 +1,54 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { getAccessToken,setAccessToken, removeAccessToken } from '../utils/localStorage'
+// import { useState, useEffect } from 'react'
+// import { useNavigate } from 'react-router-dom'
+// import { getAccessToken,setAccessToken, removeAccessToken } from '../utils/localStorage'
 
-export const useAuth = () => {
-   const [isAuthenticated, setIsAuthenticated] = useState(false)
-   const [loading, setLoading] = useState(true)
-   const navigate = useNavigate()
+// export const useAuth = () => {
+//    const [isAuthenticated, setIsAuthenticated] = useState(false)
+//    const [loading, setLoading] = useState(true)
+//    const navigate = useNavigate()
 
-   const checkAuthentication = async () => {
-     setLoading(true)
-     try{
-        const token = await getAccessToken()
-        setIsAuthenticated( token ? true : false)
-        console.log(token ? 'authenticated user' : 'unauthenticated user')
-     }
-     catch(err){
-        console.log('Error while checking authentication')
-        setIsAuthenticated(false)
-     }
-     finally{
-      setLoading(false)
-     }
-   }
+//    const checkAuthentication = async () => {
+//      setLoading(true)
+//      try{
+//         const token = await getAccessToken()
+//         setIsAuthenticated( token ? true : false)
+//         console.log(token ? 'authenticated user' : 'unauthenticated user')
+//      }
+//      catch(err){
+//         console.log('Error while checking authentication')
+//         setIsAuthenticated(false)
+//      }
+//      finally{
+//       setLoading(false)
+//      }
+//    }
 
-   useEffect(() => {
-    checkAuthentication()
-   },[])
+//    useEffect(() => {
+//     checkAuthentication()
+//    },[])
 
-   const logout = async () => {
-     try{
-      await removeAccessToken()
-      setIsAuthenticated(false)
-      console.log('logout successful')
-      navigate('/')
-     }
-     catch(err){
-      console.log('Error while logging out')
-     }
-   }
+//    const logout = async () => {
+//      try{
+//       await removeAccessToken()
+//       setIsAuthenticated(false)
+//       console.log('logout successful')
+//       // navigate('/')
+//      }
+//      catch(err){
+//       console.log('Error while logging out')
+//      }
+//    }
 
-   const login = async (token) => {
-     try{
-      setAccessToken(token)
-      setIsAuthenticated(true)
-      console.log('login successful , authentucation token: ', token)
-     }
-     catch(err){
-      console.log('Error while logging in')
-     }
-   }
+//    const login = async (token) => {
+//      try{
+//       setAccessToken(token)
+//       setIsAuthenticated(true)
+//       console.log('login successful , authentucation token: ', token)
+//      }
+//      catch(err){
+//       console.log('Error while logging in')
+//      }
+//    }
 
-   return {isAuthenticated,loading, login, logout}
-}
+//    return {isAuthenticated,loading, login, logout}
+// }

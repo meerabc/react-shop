@@ -5,6 +5,7 @@
     --purple-color:#703BF7;
     --heading-color:#000000;
     --para-color:#4D4D4D;
+    --red: #E53535;
  
 }
 
@@ -15,6 +16,7 @@
     --purple-color:#703BF7;
     --heading-color:#FFFFFF;
     --para-color:#999999;
+    --red: #E53535;
 }
 
 *{
@@ -53,6 +55,8 @@ p{
     justify-content:space-around;
     align-items:center;
     padding:11px 0;
+    /* z-index:1 */
+    position:absolute;
 }
 
 .navbar h1{
@@ -353,6 +357,63 @@ p{
 .categories-list > li.selected{
     border-left:2px solid var(--purple-color);
 }
+
+/* for FormInput.jsx  */
+
+.input-div{
+  width:345px;
+  display:flex;
+  align-items:center;
+  padding:15px;
+  border:1px solid var(--outline-color);
+  height:56px;
+  border-radius:12px;
+  color:var(--heading-color);
+  background-color:var(--button-color);
+}
+
+.input-div:focus-within{
+  border: 1px solid var(--purple-color);
+}
+
+.input-div.error{
+  border: 1px solid var(--red);
+}
+
+.input-div .left-icon{
+  display:flex;
+  align-items:center;
+}
+
+.input-div .left-icon > svg{
+  width:18px;
+  height:18px;
+}
+
+input{
+  font-size:14px;
+  font-weight:400;
+  flex-grow:1;
+  border:none;
+  outline:none;
+  padding:0 15px;
+  background-color:inherit;
+  color:var(--heading-color);
+  
+}
+
+.eye-icon-container{
+  position:relative;
+  cursor:pointer;
+}
+
+.error-msg{
+  color:#dc3545;
+  font-size:12px;
+  margin-top:5px;
+  font-weight:500;
+}
+
 
 @media (max-width:1280px){
     .hamburger-menu{
