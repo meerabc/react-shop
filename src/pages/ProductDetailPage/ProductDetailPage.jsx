@@ -93,7 +93,7 @@ const ProductDetailPage = () => {
                   <p className='price-header'>price</p>
                   <p className='price-value'>{`$ ${productData.price}`}</p>
                 </div>
-                <button>Add To Cart</button>
+                <button onClick = {()=>navigate('/cart')}>Add To Cart</button>
               </div>
           </div>
         </div>

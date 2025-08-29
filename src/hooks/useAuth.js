@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { getAccessToken,setAccessToken, removeAccessToken } from '../utils/localStorage'
 
 export const useAuth = () => {
    const [isAuthenticated, setIsAuthenticated] = useState(false)
    const [loading, setLoading] = useState(true)
+   const navigate = useNavigate()
 
    const checkAuthentication = async () => {
      setLoading(true)
@@ -30,6 +32,7 @@ export const useAuth = () => {
       await removeAccessToken()
       setIsAuthenticated(false)
       console.log('logout successful')
+      navigate('/')
      }
      catch(err){
       console.log('Error while logging out')

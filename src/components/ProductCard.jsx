@@ -28,7 +28,7 @@ const ProductCard = ({id,image,title,description,category,price}) => {
           <p className='price-header'>price</p>
           <p className='price-value'>{`$ ${price}`}</p>
         </div>
-        <button>Add To Cart</button>
+        <button onClick = {()=>navigate('/cart')}>Add To Cart</button>
       </div>
     </div>
   )
