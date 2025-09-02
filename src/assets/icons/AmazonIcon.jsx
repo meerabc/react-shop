@@ -16,3 +16,4 @@ const SvgIcon = ({color}) => (
 );
 
 export default SvgIcon;
+
