@@ -145,8 +145,8 @@ p{
 .navbar .drop-down{
     position: absolute;
     top: 100%;
-    left: 50%;              /* Position at center of parent */
-    transform: translateX(-50%);  /* Shift back by 50% of dropdown's width */
+    left: 50%;            
+    transform: translateX(-50%);  
     margin-top: 15px;
     border: 0.5px solid var(--outline-color);
     display:flex;
@@ -394,6 +394,10 @@ p{
     cursor:pointer;
 }
 
+.product-card .price-container > button:hover{
+    opacity:50%;
+}
+
 /* for CategorySelector.jsx */
 
 .category-selector{
@@ -511,6 +515,7 @@ p{
    width:70px;
    display:flex;
    align-items:center;
+   flex-shrink: 0;
 }
 
 .cart-item .product-img-container > img{
@@ -571,6 +576,10 @@ p{
     cursor:pointer;
 }
 
+.cart-item .quantity-selection-div > button:hover{
+    opacity:50%;
+}
+
 .cart-item .delete-button{
     background-color:var(--purple-color);
     color:#ffffff;
@@ -579,6 +588,10 @@ p{
     border-radius:8px;
     border:none;
     cursor:pointer;
+}
+
+.cart-item .delete-button:hover{
+    opacity:50%
 }
 
 /* for Footer.jsx */

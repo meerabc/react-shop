@@ -58,7 +58,7 @@
     height:50px;
     opacity: 0;
     animation: popIn 0.6s ease-out forwards;
-    animation-delay: 0.2s; /* same delay for all */
+    animation-delay: 0.2s; 
 }
 
 .about-page .main-content > .icons-container  svg:hover{
@@ -67,4 +67,19 @@
 
 .about-page .main-content > .icons-container.links:hover{
     cursor:pointer;
+}
+
+@media(max-width:700px){
+    .about-page .main-content > .icons-container{    
+    gap:55px;
+    }
+}
+
+@media(max-width:500px){
+    .about-page.container{
+    padding:150px 20px 20px 20px;
+    }
+.about-page .main-content > .icons-container{    
+    gap:25px;
+    }
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import CartItem from '../../components/CartItem'
+import { RiShoppingBag4Fill } from "react-icons/ri";
 import './CartPage.css'
 
 const CartPage = () => {
@@ -28,6 +29,7 @@ const CartPage = () => {
 
   return (
     <div className='cart-page container'>
+      <h1><RiShoppingBag4Fill />My Cart</h1>
       <div className='cart-items-container'>
         {cartItemElements}
       </div>

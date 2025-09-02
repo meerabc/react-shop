@@ -26,6 +26,9 @@ const SignInPage = () => {
     password : ''
   })
 
+  // to display a msg if user enters invalid credentials and api response is not okay
+  const [apiError,setApiError] = useState('')
+
   const handleFormChange = (key,value) =>{
     setFormData({
         ...formData,
@@ -80,6 +83,7 @@ const SignInPage = () => {
 
         if (!response.ok){
           console.log('response not okay',data)
+          setApiError(data.message || 'Invalid email or password')
           return
         }
        
@@ -125,6 +129,7 @@ const SignInPage = () => {
                     loading={loading} />
           </span>
         </div>
+        {apiError && <div className="error-message">Invalid Credentials . Please try again ! </div>}
       </form>
     </div>
   )

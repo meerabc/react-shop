@@ -31,6 +31,10 @@
     cursor:pointer;
 }
 
+.product-detail-page .button-container > button:hover{
+    opacity:70%;
+}
+
 .product-detail-page .button-container > button > span{
     display:flex;
     align-items:center;
@@ -88,6 +92,7 @@
 }
 
 .product-detail-page .info-container > h1{
+    margin-bottom:8px;
     font-size:36px;
     font-weight:500;
 }
@@ -157,6 +162,10 @@
     cursor:pointer;
 }
 
+.quantity-selection-div > button:hover{
+    opacity:70%;
+}
+
 .product-detail-page .buttons > button{
     background-color:var(--purple-color);
     color:#ffffff;
@@ -165,6 +174,10 @@
     border-radius:8px;
     border:none;
     cursor:pointer;
+}
+
+.product-detail-page .buttons > button:hover{
+    opacity:70%;
 }
 
 

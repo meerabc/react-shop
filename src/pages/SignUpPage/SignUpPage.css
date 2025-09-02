@@ -58,3 +58,9 @@
     color:var(--heading-color);
     cursor:pointer;
 }
+
+@media(max-width:450px){
+    .signup-page .form-input-container .input-div{
+        width:100%;
+    }
+}
