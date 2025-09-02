@@ -108,7 +108,10 @@ const ProductsPage = () => {
                color='#703BF7'
                cssOverride={{ margin: "40px auto", display: "block" }}
             />
-            {!loading && productCardElements}
+            {!loading && filteredProducts.length === 0 && (
+              <p className="no-products-msg">No products found.</p>
+            )}
+            {!loading && filteredProducts.length > 0 && productCardElements}
         </div>
         <div className='categories-container'>
             <CategorySelector 

@@ -26,12 +26,28 @@ const HomePage = () => {
 
   const [selectedCard, setSelectedCard] = useState(1)
 
+  //for slide up animation when side-image changes in feature-section
+  const [imageAnimating, setImageAnimating] = useState(false);
+
   // Maps cards to their images
   const cardImages = {
     1: card1Img,
     2: card2Img,
     3: card3Img,
   }
+
+  // Handles card click with animation
+  const handleCardClick = (cardNumber) => {
+    if (cardNumber !== selectedCard) {
+      setImageAnimating(true);
+      setSelectedCard(cardNumber);
+      
+      // Remove the animation class after animation completes
+      setTimeout(() => {
+        setImageAnimating(false);
+      }, 500);
+    }
+  };
 
   return (
     <div className='home-page container'>
@@ -67,7 +83,7 @@ const HomePage = () => {
               {/* Card 1 */}
               <div 
                 className={`card card1 ${selectedCard === 1 ? "selected" : ""}`}
-                onClick={() => setSelectedCard(1)}
+                onClick={() => handleCardClick(1)}
               >
                 <div className="content">
                   <h3>Simple shopping ecosystem</h3>
@@ -82,7 +98,7 @@ const HomePage = () => {
               {/* Card 2 */}
               <div 
                 className={`card card2 ${selectedCard === 2 ? "selected" : ""}`}
-                onClick={() => setSelectedCard(2)}
+                onClick={() => handleCardClick(2)}
               >
                 <div className="content">
                   <h3>Fast & Reliable</h3>
@@ -97,7 +113,7 @@ const HomePage = () => {
               {/* Card 3 */}
               <div 
                 className={`card card3 ${selectedCard === 3 ? "selected" : ""}`}
-                onClick={() => setSelectedCard(3)}
+                onClick={() => handleCardClick(3)}
               >
                 <div className="content">
                   <h3>Smart & Efficient</h3>
@@ -113,7 +129,8 @@ const HomePage = () => {
 
           <div className="img-container">
             {selectedCard ? (
-              <img src={cardImages[selectedCard]} alt={`card${selectedCard}`} />
+              <img src={cardImages[selectedCard]} alt={`card${selectedCard}`} 
+              className={imageAnimating ? 'slide-up' : ''}/>
             ) : (
               <p>Select a card to view image</p>
             )}

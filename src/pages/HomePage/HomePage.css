@@ -12,6 +12,13 @@
     position:relative;
 }
 
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .home-page .hero  .main-content {
     z-index:1;
     display:flex;
@@ -25,6 +32,10 @@
     font-weight:800;
     text-align:center;
     letter-spacing:-3px;
+
+    opacity: 0;
+    transform: translateY(-30px);
+    animation: fadeInUp 0.8s ease-out 0.2s forwards;
 }
 
 .home-page .hero  .main-content h1 > span{
@@ -37,12 +48,20 @@
   font-size:20px;
   max-width:750px;
   text-align:center;
+
+    opacity: 0;
+    transform: translateY(-30px);
+    animation: fadeInUp 0.8s ease-out 0.6s forwards;
 }
 
 .home-page .hero  .main-content .buttons-container{
   display:flex;
   gap:15px;
   margin-top:25px;
+
+    opacity: 0;
+    transform: translateY(-30px);
+    animation: fadeInUp 0.8s ease-out 1s forwards;
 }
 
 .home-page .hero  .main-content .buttons-container button{
@@ -146,21 +165,62 @@
    
 }
 
-.home-page .feature-section .bottom-div .img-container{
-   
-    width:1100px;
-    display:flex;
-    align-items:center;
-   
+.home-page .feature-section .bottom-div .features-div{
+    animation: slideInFromLeft 0.8s ease-out;
 } 
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
 
 .home-page .feature-section .bottom-div .features-div .para{
     margin-bottom:30px;
 } 
 
+.home-page .feature-section .bottom-div .img-container{
+    width:1100px;
+    display:flex;
+    align-items:center; 
+    animation: slideInFromBottom 0.6s ease-out;
+} 
+
+@keyframes slideInFromBottom {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 .home-page .feature-section .bottom-div .img-container > img{
     width:100%;
     height:auto;
+    transition: all 0.3s ease-out;
+}
+
+.home-page .feature-section .bottom-div .img-container > img.slide-up {
+    animation: slideUpOnChange 0.5s ease-out;
+}
+
+@keyframes slideUpOnChange {
+    0% {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .home-page .feature-section .bottom-div .feature-cards{
@@ -279,6 +339,17 @@
 
 /* for end-section */
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .home-page .end-section{
     padding:80px 20px;
     display:flex;
@@ -286,6 +357,11 @@
     align-items:center;
     gap:65px;
     background:var(--bg-color);
+}
+
+.home-page .end-section .top-div .para {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 0.2s forwards;
 }
 
 .home-page .end-section .icons-container{
@@ -304,6 +380,8 @@
    padding:70px 40px 40px 40px;
    position:relative;
    background-color:var(--button-color);
+   opacity: 0;
+   animation: fadeInUp 0.8s ease-out 0.8s forwards;
 }
 
 .home-page .end-section .comment-container >img {
@@ -333,6 +411,8 @@
 .home-page .end-section .contact-container{
     background-color:var(--button-color);
     display:flex;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 1.4s forwards;
 }
 
 .home-page .end-section .contact-container .content{
