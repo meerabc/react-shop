@@ -13,7 +13,7 @@ const FormInput = ({icon, type, placeholder, value, onChange, error}) => {
   }
 
   return (
-    <div className="input-container">
+    <div className="form-input-container">
       <div className={`input-div ${error ? 'error' : ''}`}>
         {icon && <span className='left-icon'>{icon}</span>} 
         <input 

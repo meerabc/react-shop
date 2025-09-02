@@ -19,7 +19,7 @@
     margin-bottom:20px;
 }
 
-.signup-page form > button {
+.signup-page form  button {
     background-color:var(--purple-color);
     color: #ffffff;
     padding:15px 0;
@@ -30,6 +30,25 @@
     font-weight:700;
     text-transform:uppercase;
     letter-spacing:1px;
+    width:100%;
+}
+
+.signup-page form  button:disabled {
+    opacity:50%;
+    cursor:not-allowed;
+}
+
+.signup-page .submit-button-container{
+    position:relative;
+    width:100%;
+}
+
+.signup-page .submit-button-container > span{
+    position:absolute;
+    /* z-index:2; */
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
 }
 
 .signup-page .sign-in-div > span{

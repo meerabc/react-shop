@@ -6,11 +6,13 @@ import { FaUser } from "react-icons/fa";
 import { MdEmail } from "react-icons/md"; 
 import { RiLockPasswordFill } from "react-icons/ri"; 
 import FormInput from '../../components/FormInput'
+import { ClipLoader } from 'react-spinners'
 import './SignUpPage.css'
 
 const SignUpPage = () => {
 
   const navigate = useNavigate()
+  const [loading,setLoading] = useState(false)
 
   // const [formData,setFormData] = useState({
   //   name : '',
@@ -109,6 +111,8 @@ const SignUpPage = () => {
     }
 
     try{
+        setLoading(true)
+
         const response = await fetch('https://api.escuelajs.co/api/v1/users/',{
             method : 'POST' ,
             headers : {
@@ -127,6 +131,9 @@ const SignUpPage = () => {
     }
     catch(err){
         console.log(err)
+    }
+    finally{
+      setLoading(false)
     }
     navigate('/signin')
 
@@ -169,7 +176,14 @@ const SignUpPage = () => {
             error={errors.confirmPassword}
           />
         <p className='sign-in-div'>Already have an account?<span onClick = {()=>navigate('/signin')}>SIGN IN</span></p>
-        <button type='submit'>Submit</button>
+        <div className='submit-button-container'>
+          <button type='submit' disabled={loading}>Submit</button>
+          <span><ClipLoader 
+                    size={30}
+                    color='#ffffff'
+                    loading={loading} />
+          </span>
+        </div>
       </form>
     </div>
   )

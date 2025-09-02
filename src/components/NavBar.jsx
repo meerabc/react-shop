@@ -2,25 +2,26 @@ import React from 'react'
 import { FaSignInAlt } from "react-icons/fa";
 import { MdPersonAdd } from "react-icons/md";
 import { BiLogOut } from "react-icons/bi";
-import { FaGithub } from 'react-icons/fa';
 import { RiMoonClearLine } from "react-icons/ri";
 import { TbBrightnessUp } from "react-icons/tb";
 import { RxHamburgerMenu } from "react-icons/rx";
 import ThemeContext from '../contexts/ThemeContext'
 import{ useContext,useState,useRef,useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../contexts/AuthContext'
 import { IoCart } from "react-icons/io5";
 import { useSelector } from 'react-redux'
+import NavButtons from './NavButtons'
+import MobileMenu from './MobileMenu'
 
 const NavBar = () => {
 
   const navigate = useNavigate()
 
-  const {isAuthenticated,logout} = useAuth()
   const {theme,setTheme} = useContext(ThemeContext)
   //for theme selection drop-down
   const [isOpen,setIsOpen] = useState(false)
+  //for hamburger-menuu (in smaller screens)
+  const [isMenuOpen,setIsMenuOpen] = useState(false)
   //when user clicks outside the dropdown,isOpen is set to false using this reference
   const dropDownRef = useRef()
   //the theme-button icon state management
@@ -30,12 +31,14 @@ const NavBar = () => {
 
   const carts = useSelector(store=>store.cart.items)
 
+  //updates total quantity each time product added to cart,[carts changes]
   useEffect(()=>{
     let total = 0
     carts.forEach(item => total += item.quantity )
     setTotalQuantity(total)
   },[carts])
 
+  //for outside click handling in case of theme-selection drop-down 
   useEffect(()=>{
     const handleClickOutside = () => {
       if(dropDownRef.current && !dropDownRef.current.contains(event.target))
@@ -49,40 +52,26 @@ const NavBar = () => {
       document.removeEventListener('mousedown',handleClickOutside)
     }
   },[isOpen])
- 
-  //just to check logical flow
-  console.log('NavBar render - isAuthenticated:', isAuthenticated)
+
+  const handleClick = () => {
+    setIsMenuOpen(prev=>!prev)
+  }
 
   return (
     <div className='navbar'>
-        <button className = 'hamburger-menu'>
+        <button className = 'hamburger-menu'
+        onClick={handleClick}>
           <RxHamburgerMenu />
         </button>
+        {isMenuOpen && <MobileMenu setOpen={setIsMenuOpen}/>}
         <h1>React Shop</h1>
         <ul className='nav-items-container'>
-           <li>Home</li>
-           <li onClick = {()=>navigate('/')}>Products</li>
-           <li>About</li>
+           <li onClick = {()=>navigate('/')}>Home</li>
+           <li onClick = {()=>navigate('/products')}>Products</li>
+           <li onClick = {()=>navigate('/about')}>About</li>
         </ul>
         <div className='buttons-container'>
-            {!isAuthenticated ?
-              <div  className='nav-buttons'>
-                <button className='login-button'
-                  onClick = {()=>navigate('/signin')}>
-                  <FaSignInAlt /> Login
-                </button>
-                <button className='signup-button'
-                  onClick = {()=>navigate('/signup')}>
-                  <MdPersonAdd /> Sign Up
-                </button> 
-              </div>  :
-              <div  className='nav-buttons'>
-                <button className='logout-button'
-                  onClick = {logout}>
-                  <BiLogOut /> Logout
-                </button>
-              </div>
-            }
+            <NavButtons />
             <div className='nav-icons'>
                 <div className='theme-selection-container'
                      ref={dropDownRef}>
@@ -111,9 +100,6 @@ const NavBar = () => {
                      </ul>
                   }
                 </div>
-                {/* <button className='icon-container'>
-                   <FaGithub />
-                </button> */}
                 <button className='icon-container' 
                 id='cart-icon-container'
                 onClick={()=>navigate('/cart')}>

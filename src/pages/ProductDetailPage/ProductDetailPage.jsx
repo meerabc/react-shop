@@ -83,7 +83,7 @@ const ProductDetailPage = () => {
       <div className='product-container'>
         <div className='button-container'>
           <button className='back-button'
-                  onClick={()=>navigate('/')}>
+                  onClick={()=>navigate('/products')}>
                   <span><IoIosArrowBack /></span>
                   Back
           </button>

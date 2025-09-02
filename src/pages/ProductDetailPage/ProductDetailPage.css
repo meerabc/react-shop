@@ -49,8 +49,6 @@
     justify-content:center;
 }
 
-
-
 .product-detail-page .side-img-container{
    display:flex;
    flex-direction:column;
@@ -79,11 +77,11 @@
     gap:50px;
 }
 
+/* main image */
 .product-detail-page .main-img-container{
     width:350px;
 }
 
-/* main image */
 .product-detail-page .main-img-container >img{
     width:100%;
     border-radius:12px;

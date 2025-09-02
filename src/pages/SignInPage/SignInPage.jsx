@@ -6,6 +6,7 @@ import { validateEmail } from '../../utils/validationHelper'
 import { MdEmail } from "react-icons/md"; 
 import { RiLockPasswordFill } from "react-icons/ri"; 
 import FormInput from '../../components/FormInput'
+import { ClipLoader } from 'react-spinners'
 import './SignInPage.css'
 
 const SignInPage = () => {
@@ -14,6 +15,7 @@ const SignInPage = () => {
 
   const {login} = useAuth()
 
+  const [loading,setLoading] = useState(false)
   const [formData,setFormData] = useState({
     email : '',
     password : ''
@@ -66,6 +68,7 @@ const SignInPage = () => {
     }
 
     try{
+        setLoading(true)
         const response = await fetch('https://api.escuelajs.co/api/v1/auth/login',{
             method : 'POST' ,
             headers : {
@@ -87,12 +90,15 @@ const SignInPage = () => {
     catch(err){
         console.log(err)
     }
+    finally{
+      setLoading(false)
+    }
 
   }
 
   return (
     <div className='signin-page container'>
-      <h1>Sign Up</h1>
+      <h1>Sign In</h1>
       <form onSubmit={handleSubmit}>
           <FormInput 
             type='email' 
@@ -111,7 +117,14 @@ const SignInPage = () => {
             error={errors.password}
           />
         <p className='sign-up-div'>Don't have an account?<span onClick = {()=>navigate('/signup')}>SIGN UP</span></p>
-        <button type='submit'>Submit</button>
+        <div className='submit-button-container'>
+          <button type='submit' disabled={loading}>Submit</button>
+          <span><ClipLoader 
+                    size={30}
+                    color='#ffffff'
+                    loading={loading} />
+          </span>
+        </div>
       </form>
     </div>
   )
