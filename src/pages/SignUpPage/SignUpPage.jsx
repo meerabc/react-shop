@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { validateEmail, validateFullName1To3Words } from '../../utils/validationHelper'
+import { validateEmail, validateFullName1To3Words, validatePassword } from '../../utils/validationHelper'
 import { FaUser } from "react-icons/fa"; 
 import { MdEmail } from "react-icons/md"; 
 import { RiLockPasswordFill } from "react-icons/ri"; 
@@ -13,13 +13,6 @@ const SignUpPage = () => {
 
   const navigate = useNavigate()
   const [loading,setLoading] = useState(false)
-
-  // const [formData,setFormData] = useState({
-  //   name : '',
-  //   email : '',
-  //   password : '',
-  //   avatar : 'https://img.lovepik.com/png/20231125/man-avatar-image-for-profile-child-diverse-guy_693690_wh860.png'
-  // })
 
   const [formData,setFormData] = useState({
     name : '',
@@ -34,6 +27,10 @@ const SignUpPage = () => {
     password : '',
     confirmPassword : ''
   })
+
+  // to display a msg if api response is not okay for any reason
+  const [apiError,setApiError] = useState('')
+  
   
 
   const handleFormChange = (key,value) =>{
@@ -64,8 +61,8 @@ const SignUpPage = () => {
       case 'password' :
         if(!value)
           error = 'this field is mandatory'
-        // else if(!validatePassword(value))
-        //   error = 'password must be 8+ chars with letter, number & special character'
+        else if(!validatePassword(value))
+          error = 'password must be 5+ chars with letters & numbers only'
         break
               
       case 'confirmPassword' :
@@ -124,6 +121,7 @@ const SignUpPage = () => {
 
         if(!response.ok){
           console.log('response not okay ',data)
+          setApiError(data.message || 'Invalid data')
           return
         }
         
@@ -184,6 +182,7 @@ const SignUpPage = () => {
                     loading={loading} />
           </span>
         </div>
+        {apiError && <div className="error-message">{apiError}</div>}
       </form>
     </div>
   )

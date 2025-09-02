@@ -32,8 +32,8 @@ const App = () => {
 
   
   return (
-    <AuthProvider>
     <Provider store={store}>
+     <AuthProvider>
     <ThemeContext.Provider value={{theme,setTheme}} >
     <Router>
       <Routes>
@@ -55,8 +55,8 @@ const App = () => {
       </Routes>
     </Router>
     </ThemeContext.Provider>
-    </Provider>
     </AuthProvider>
+    </Provider>
   )
 }
 

@@ -59,6 +59,13 @@
     cursor:pointer;
 }
 
+.signup-page form .error-message{
+    color:var(--red);
+    margin:0 auto;
+    text-align:center;
+}
+
+
 @media(max-width:450px){
     .signup-page .form-input-container .input-div{
         width:100%;

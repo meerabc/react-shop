@@ -1,21 +1,47 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+const getCartKey = (userId) => {
+    return userId ? `carts_user_${userId}` : 'carts_guest'
+}
+
+const getCartFromStorage = (userId) => {
+    const key = getCartKey(userId)
+    const stored = localStorage.getItem(key)
+    return stored ? JSON.parse(stored) : []
+}
+
+const saveCartToStorage = (items, userId) => {
+    const key = getCartKey(userId)
+    localStorage.setItem(key, JSON.stringify(items))
+}
+
 const initialState = {
-    items: localStorage.getItem('carts') ? 
-           JSON.parse(localStorage.getItem('carts')) : []
+    items: [],
+    userId: null
 }
 
 const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        addToCart(state, action){
+        setUser(state, action) {
+            const { userId } = action.payload
+            state.userId = userId
+            state.items = getCartFromStorage(userId)
+        },
+
+        clearUser(state) {
+            state.userId = null
+            state.items = []
+        },
+
+        addToCart(state, action) {
             const {productId, quantity, productName, productImage, productCategory, productPrice} = action.payload
             const indexProductId = (state.items).findIndex(item => item.productId === productId)
-            if(indexProductId >= 0){
+            
+            if(indexProductId >= 0) {
                 state.items[indexProductId].quantity += quantity;
-            }
-            else{
+            } else {
                 state.items.push({
                     productId, 
                     quantity,
@@ -25,9 +51,9 @@ const cartSlice = createSlice({
                     productPrice
                 })
             }
-            //so data remains even when page is refreshed
-            localStorage.setItem("carts", JSON.stringify(state.items))
-        } ,
+            // So we can fetch user-specific cart from local storage
+            saveCartToStorage(state.items, state.userId)
+        },
 
         changeQuantity(state, action) {
             const { productId, quantity } = action.payload
@@ -35,16 +61,13 @@ const cartSlice = createSlice({
             
             if(indexProductId >= 0) {
                 if(quantity <= 0) {
-                    // If quantity is 0 or less, remove item(even tho i have handled that I cant select 
-                    // quantity to be 0 but just to be on safe side
                     state.items.splice(indexProductId, 1)
                 } else {
-                    // Update quantity
                     state.items[indexProductId].quantity = quantity
                 }
             }
-            localStorage.setItem("carts", JSON.stringify(state.items))
-        } ,
+            saveCartToStorage(state.items, state.userId)
+        },
 
         removeFromCart(state, action) {
             const { productId } = action.payload
@@ -53,16 +76,15 @@ const cartSlice = createSlice({
             if(indexProductId >= 0) {
                 state.items.splice(indexProductId, 1)
             }
-            localStorage.setItem("carts", JSON.stringify(state.items))
-        } ,
+            saveCartToStorage(state.items, state.userId)
+        },
 
         clearCart(state) {
             state.items = []
-            localStorage.setItem("carts", JSON.stringify(state.items))
-        }
-
+            saveCartToStorage(state.items, state.userId)
+        },
     }
 })
 
-export const { addToCart, changeQuantity, removeFromCart, clearCart } = cartSlice.actions
+export const { addToCart, changeQuantity, removeFromCart, clearCart, setUser, clearUser } = cartSlice.actions
 export default cartSlice.reducer

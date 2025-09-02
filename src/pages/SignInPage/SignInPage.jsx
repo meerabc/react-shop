@@ -83,7 +83,8 @@ const SignInPage = () => {
 
         if (!response.ok){
           console.log('response not okay',data)
-          setApiError(data.message || 'Invalid email or password')
+          //not displayinf this message for 
+          setApiError(data.message || 'Invalid Credentials . Please try again !')
           return
         }
        
@@ -129,7 +130,7 @@ const SignInPage = () => {
                     loading={loading} />
           </span>
         </div>
-        {apiError && <div className="error-message">Invalid Credentials . Please try again ! </div>}
+        {apiError && <div className="error-message">{apiError}</div>}
       </form>
     </div>
   )

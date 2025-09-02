@@ -18,20 +18,12 @@ const CartPage = () => {
               price={item.productPrice} />
   )
 
-  if(carts.length === 0)
-    return (
-    <div className='cart-page container'>
-      <div className='cart-items-container'>
-        <p>No items yet</p>
-      </div>
-    </div>
-  )
-
   return (
     <div className='cart-page container'>
       <h1><RiShoppingBag4Fill />My Cart</h1>
       <div className='cart-items-container'>
-        {cartItemElements}
+        {carts.length==0 &&  <p>Cart is empty !</p>}
+        {carts.length!==0 && cartItemElements}
       </div>
     </div>
   )
