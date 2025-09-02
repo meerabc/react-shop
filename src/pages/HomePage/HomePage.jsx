@@ -156,35 +156,35 @@ const HomePage = () => {
             <div className='icon-container'>
               <GrTarget />  
             </div>
-            <h2>Initial Contact</h2>
+            <h2>Discovery Session</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           </div>
           <div className="procedure-card">
             <div className='icon-container'>
               <FaRegHandshake />                 
             </div>
-            <h2>Initial Contact</h2>
+            <h2>Contracting</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           </div>
           <div className="procedure-card">
             <div className='icon-container'>
               <PiSignOutFill />
             </div>
-            <h2>Initial Contact</h2>
+            <h2>Fast Prototyping</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           </div>
           <div className="procedure-card">
             <div className='icon-container'>
               <VscEditorLayout />
             </div>
-            <h2>Initial Contact</h2>
+            <h2>Design Phase</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           </div>
           <div className="procedure-card">
             <div className='icon-container'>
               <HiOutlineSparkles />
             </div>
-            <h2>Initial Contact</h2>
+            <h2>Develop & Listing for sale</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           </div>
         </div>
